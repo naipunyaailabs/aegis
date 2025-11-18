@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, ArrowLeft, Lock, Users } from 'lucide-react';
+import { FileText, ArrowLeft, Lock, Users, Plus, Edit, Trash2 } from 'lucide-react';
 import ProductDashboardLayout from '@/components/layout/ProductDashboardLayout';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -28,6 +28,11 @@ export default function MinutesPreparation() {
   const [directors, setDirectors] = useState<Director[]>([]);
   const [isLoadingDirectors, setIsLoadingDirectors] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editingDirector, setEditingDirector] = useState<Director | null>(null);
+  const [formData, setFormData] = useState({ name: '', din: '' });
+  const [submitting, setSubmitting] = useState(false);
 
   // Define navigation items for this product
   const navigationItems = [
@@ -57,26 +62,26 @@ export default function MinutesPreparation() {
   }, []);
 
   // Fetch directors data
-  useEffect(() => {
-    const fetchDirectorsData = async () => {
-      if (!isAuthenticated) return;
-      
-      setIsLoadingDirectors(true);
-      try {
-        const response = await fetch('/directors');
-        if (response.ok) {
-          const result = await response.json();
-          setDirectors(result.data);
-        } else {
-          console.error('Failed to fetch directors data');
-        }
-      } catch (error) {
-        console.error('Error fetching directors data:', error);
-      } finally {
-        setIsLoadingDirectors(false);
+  const fetchDirectorsData = async () => {
+    if (!isAuthenticated) return;
+    
+    setIsLoadingDirectors(true);
+    try {
+      const response = await fetch('/directors');
+      if (response.ok) {
+        const result = await response.json();
+        setDirectors(result.data);
+      } else {
+        console.error('Failed to fetch directors data');
       }
-    };
+    } catch (error) {
+      console.error('Error fetching directors data:', error);
+    } finally {
+      setIsLoadingDirectors(false);
+    }
+  };
 
+  useEffect(() => {
     fetchDirectorsData();
   }, [isAuthenticated]);
 
@@ -148,6 +153,84 @@ export default function MinutesPreparation() {
     director.din.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleAddDirector = async () => {
+    if (!formData.name.trim() || !formData.din.trim()) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      const response = await fetch('/api/directors-master', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) throw new Error('Failed to add director');
+
+      await fetchDirectorsData();
+      setIsAddDialogOpen(false);
+      setFormData({ name: '', din: '' });
+    } catch (err) {
+      console.error('Error adding director:', err);
+      alert('Failed to add director');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleEditDirector = async () => {
+    if (!editingDirector || !formData.name.trim() || !formData.din.trim()) {
+      alert('Please fill in all fields');
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      const response = await fetch(`/api/directors-master/${editingDirector.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) throw new Error('Failed to update director');
+
+      await fetchDirectorsData();
+      setIsEditDialogOpen(false);
+      setEditingDirector(null);
+      setFormData({ name: '', din: '' });
+    } catch (err) {
+      console.error('Error updating director:', err);
+      alert('Failed to update director');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleDeleteDirector = async (id: number) => {
+    if (!confirm('Are you sure you want to delete this director?')) return;
+
+    try {
+      const response = await fetch(`/api/directors-master/${id}`, {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) throw new Error('Failed to delete director');
+
+      await fetchDirectorsData();
+    } catch (err) {
+      console.error('Error deleting director:', err);
+      alert('Failed to delete director');
+    }
+  };
+
+  const openEditDialog = (director: Director) => {
+    setEditingDirector(director);
+    setFormData({ name: director.name, din: director.din });
+    setIsEditDialogOpen(true);
+  };
+
   return (
     <ProductDashboardLayout 
       productName="Minutes Preparation" 
@@ -191,12 +274,23 @@ export default function MinutesPreparation() {
                 <h2 className="text-2xl font-bold">Directors List</h2>
                 <p className="text-muted-foreground">View and manage company directors</p>
               </div>
-              <div className="w-full md:w-64">
+              <div className="flex items-center gap-2">
                 <Input
                   placeholder="Search directors..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full md:w-64"
                 />
+                <Button
+                  onClick={() => {
+                    setFormData({ name: '', din: '' });
+                    setIsAddDialogOpen(true);
+                  }}
+                  className="gap-2 whitespace-nowrap"
+                >
+                  <Plus className="h-4 w-4" />
+                  Add Director
+                </Button>
               </div>
             </div>
 
@@ -214,6 +308,7 @@ export default function MinutesPreparation() {
                         <TableHead>Name</TableHead>
                         <TableHead>DIN</TableHead>
                         <TableHead>Created At</TableHead>
+                        <TableHead className="text-center">Actions</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -223,11 +318,33 @@ export default function MinutesPreparation() {
                             <TableCell className="font-medium">{director.name}</TableCell>
                             <TableCell>{director.din}</TableCell>
                             <TableCell>{new Date(director.created_at).toLocaleDateString()}</TableCell>
+                            <TableCell>
+                              <div className="flex gap-2 justify-center">
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => openEditDialog(director)}
+                                  className="gap-1"
+                                >
+                                  <Edit className="h-3 w-3" />
+                                  Edit
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="destructive"
+                                  onClick={() => handleDeleteDirector(director.id)}
+                                  className="gap-1"
+                                >
+                                  <Trash2 className="h-3 w-3" />
+                                  Delete
+                                </Button>
+                              </div>
+                            </TableCell>
                           </TableRow>
                         ))
                       ) : (
                         <TableRow>
-                          <TableCell colSpan={3} className="text-center py-8">
+                          <TableCell colSpan={4} className="text-center py-8">
                             {searchTerm ? 'No directors found matching your search.' : 'No directors found.'}
                           </TableCell>
                         </TableRow>
@@ -376,6 +493,102 @@ export default function MinutesPreparation() {
                 Login
               </Button>
             </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Add Director Dialog */}
+      <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
+        <DialogContent className="bg-white">
+          <DialogHeader>
+            <DialogTitle>Add New Director</DialogTitle>
+            <DialogDescription>
+              Enter the details of the new director below.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="add-name">Director Name *</Label>
+              <Input
+                id="add-name"
+                value={formData.name}
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                placeholder="Enter director name"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="add-din">DIN *</Label>
+              <Input
+                id="add-din"
+                value={formData.din}
+                onChange={(e) => setFormData(prev => ({ ...prev, din: e.target.value }))}
+                placeholder="Enter DIN number"
+                maxLength={8}
+              />
+            </div>
+          </div>
+          <div className="flex justify-end gap-2 pt-2">
+            <Button
+              variant="outline"
+              onClick={() => setIsAddDialogOpen(false)}
+              disabled={submitting}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleAddDirector}
+              disabled={submitting}
+            >
+              {submitting ? 'Adding...' : 'Add Director'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Edit Director Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="bg-white">
+          <DialogHeader>
+            <DialogTitle>Edit Director</DialogTitle>
+            <DialogDescription>
+              Update the director's information below.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-4">
+            <div className="space-y-2">
+              <Label htmlFor="edit-name">Director Name *</Label>
+              <Input
+                id="edit-name"
+                value={formData.name}
+                onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                placeholder="Enter director name"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="edit-din">DIN *</Label>
+              <Input
+                id="edit-din"
+                value={formData.din}
+                onChange={(e) => setFormData(prev => ({ ...prev, din: e.target.value }))}
+                placeholder="Enter DIN number"
+                maxLength={8}
+              />
+            </div>
+          </div>
+          <div className="flex justify-end gap-2 pt-2">
+            <Button
+              variant="outline"
+              onClick={() => setIsEditDialogOpen(false)}
+              disabled={submitting}
+            >
+              Cancel
+            </Button>
+            <Button
+              onClick={handleEditDirector}
+              disabled={submitting}
+            >
+              {submitting ? 'Updating...' : 'Update Director'}
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

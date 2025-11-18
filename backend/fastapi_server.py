@@ -1010,6 +1010,142 @@ async def get_directors_master():
         logger.error(f"Error fetching directors master: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to fetch directors: {str(e)}")
 
+class DirectorCreateRequest(BaseModel):
+    name: str
+    din: str
+
+class DirectorUpdateRequest(BaseModel):
+    name: str
+    din: str
+
+@app.post("/api/directors-master", response_model=DirectorMasterResponse)
+async def create_director(request: DirectorCreateRequest):
+    """Create a new director in directors database"""
+    try:
+        db_path = os.path.join(os.path.dirname(__file__), "public", "directors.db")
+        
+        def insert_director():
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            
+            # Check if director with same DIN already exists
+            cursor.execute("SELECT id FROM directors WHERE din = ?", (request.din,))
+            if cursor.fetchone():
+                conn.close()
+                raise HTTPException(status_code=400, detail="Director with this DIN already exists")
+            
+            # Insert new director
+            cursor.execute(
+                "INSERT INTO directors (name, din) VALUES (?, ?)",
+                (request.name, request.din)
+            )
+            director_id = cursor.lastrowid
+            
+            # Fetch the created director
+            cursor.execute("SELECT id, name, din, created_at FROM directors WHERE id = ?", (director_id,))
+            row = cursor.fetchone()
+            conn.commit()
+            conn.close()
+            
+            return {
+                'id': row[0],
+                'name': row[1],
+                'din': row[2],
+                'created_at': row[3]
+            }
+        
+        loop = asyncio.get_event_loop()
+        director = await loop.run_in_executor(thread_pool, insert_director)
+        
+        return DirectorMasterResponse(**director)
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error creating director: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to create director: {str(e)}")
+
+@app.put("/api/directors-master/{director_id}", response_model=DirectorMasterResponse)
+async def update_director(director_id: int, request: DirectorUpdateRequest):
+    """Update an existing director in directors database"""
+    try:
+        db_path = os.path.join(os.path.dirname(__file__), "public", "directors.db")
+        
+        def update_director_data():
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            
+            # Check if director exists
+            cursor.execute("SELECT id FROM directors WHERE id = ?", (director_id,))
+            if not cursor.fetchone():
+                conn.close()
+                raise HTTPException(status_code=404, detail="Director not found")
+            
+            # Check if another director has the same DIN
+            cursor.execute("SELECT id FROM directors WHERE din = ? AND id != ?", (request.din, director_id))
+            if cursor.fetchone():
+                conn.close()
+                raise HTTPException(status_code=400, detail="Another director with this DIN already exists")
+            
+            # Update director
+            cursor.execute(
+                "UPDATE directors SET name = ?, din = ? WHERE id = ?",
+                (request.name, request.din, director_id)
+            )
+            
+            # Fetch updated director
+            cursor.execute("SELECT id, name, din, created_at FROM directors WHERE id = ?", (director_id,))
+            row = cursor.fetchone()
+            conn.commit()
+            conn.close()
+            
+            return {
+                'id': row[0],
+                'name': row[1],
+                'din': row[2],
+                'created_at': row[3]
+            }
+        
+        loop = asyncio.get_event_loop()
+        director = await loop.run_in_executor(thread_pool, update_director_data)
+        
+        return DirectorMasterResponse(**director)
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating director: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to update director: {str(e)}")
+
+@app.delete("/api/directors-master/{director_id}")
+async def delete_director(director_id: int):
+    """Delete a director from directors database"""
+    try:
+        db_path = os.path.join(os.path.dirname(__file__), "public", "directors.db")
+        
+        def delete_director_data():
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            
+            # Check if director exists
+            cursor.execute("SELECT id FROM directors WHERE id = ?", (director_id,))
+            if not cursor.fetchone():
+                conn.close()
+                raise HTTPException(status_code=404, detail="Director not found")
+            
+            # Delete director
+            cursor.execute("DELETE FROM directors WHERE id = ?", (director_id,))
+            conn.commit()
+            conn.close()
+        
+        loop = asyncio.get_event_loop()
+        await loop.run_in_executor(thread_pool, delete_director_data)
+        
+        return {"message": "Director deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting director: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to delete director: {str(e)}")
+
 @app.get("/api/directors-disclosures", response_model=DisclosuresResponse)
 async def get_directors_disclosures():
     """Get all directors' disclosures from Word files"""
@@ -1146,6 +1282,45 @@ async def get_disclosure_content(disclosure_id: int):
     except Exception as e:
         logger.error(f"Error fetching disclosure content: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to fetch content: {str(e)}")
+
+@app.get("/api/directors-disclosures/{disclosure_id}/download")
+async def download_disclosure(disclosure_id: int):
+    """Download a specific disclosure document"""
+    try:
+        disclosures_dir = os.path.join(os.path.dirname(__file__), "public", "Directors Discloser Output")
+        
+        def get_file_path():
+            if not os.path.exists(disclosures_dir):
+                raise HTTPException(status_code=404, detail="Disclosures directory not found")
+            
+            # Get list of docx files
+            docx_files = [f for f in os.listdir(disclosures_dir) 
+                         if f.endswith('.docx') and not f.startswith('~$')]
+            
+            # Check if disclosure_id is valid
+            if disclosure_id < 1 or disclosure_id > len(docx_files):
+                raise HTTPException(status_code=404, detail="Disclosure not found")
+            
+            # Get the file at the specified index
+            filename = sorted(docx_files)[disclosure_id - 1]
+            file_path = os.path.join(disclosures_dir, filename)
+            
+            return file_path, filename
+        
+        loop = asyncio.get_event_loop()
+        file_path, filename = await loop.run_in_executor(thread_pool, get_file_path)
+        
+        # Return file for download
+        return FileResponse(
+            path=file_path,
+            filename=filename,
+            media_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error downloading disclosure: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to download file: {str(e)}")
 
 @app.get("/api/directors-disclosures/analytics", response_model=DisclosureAnalyticsResponse)
 async def get_disclosures_analytics():

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { FileText, Eye, Loader2, AlertCircle } from "lucide-react";
+import { FileText, Eye, Download, Loader2, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -58,6 +58,24 @@ const DirectorsDisclosureDataSource = () => {
       setError(err instanceof Error ? err.message : 'Failed to load disclosures');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDownloadDisclosure = async (disclosure: Disclosure) => {
+    try {
+      // The file_path from backend includes the filename
+      const filename = disclosure.file_path.split('/').pop() || `${disclosure.director_name}_disclosure.docx`;
+      const downloadUrl = `/api/directors-disclosures/${disclosure.id}/download`;
+      
+      // Create a temporary link and trigger download
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (err) {
+      console.error('Error downloading disclosure:', err);
     }
   };
 
@@ -168,16 +186,28 @@ const DirectorsDisclosureDataSource = () => {
                           </span>
                         </TableCell>
                         <TableCell className="text-center">
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={() => handleViewDisclosure(disclosure)}
-                            className="gap-2"
-                            style={{ borderColor: '#75479C', color: '#75479C' }}
-                          >
-                            <Eye className="h-4 w-4" />
-                            View
-                          </Button>
+                          <div className="flex gap-2 justify-center">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleViewDisclosure(disclosure)}
+                              className="gap-2"
+                              style={{ borderColor: '#75479C', color: '#75479C' }}
+                            >
+                              <Eye className="h-4 w-4" />
+                              View
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              onClick={() => handleDownloadDisclosure(disclosure)}
+                              className="gap-2"
+                              style={{ borderColor: '#0B74B0', color: '#0B74B0' }}
+                            >
+                              <Download className="h-4 w-4" />
+                              Download
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     ))

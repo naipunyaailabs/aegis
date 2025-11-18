@@ -79,20 +79,36 @@ const DirectorsDisclosureAnalytics = () => {
       </div>
 
       {/* Total Count */}
-      <div className="max-w-2xl">
-        <Card className="border-0 shadow-lg" style={{ borderLeft: '4px solid #75479C' }}>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base font-semibold">Total Disclosures</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-5xl font-bold" style={{ color: '#75479C' }}>
-              {analytics?.total_disclosures || 0}
-            </div>
-            <div className="text-sm mt-2" style={{ color: '#666666' }}>
-              All time records
-            </div>
-          </CardContent>
-        </Card>
+      <div className="max-w-4xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Card className="border-0 shadow-lg" style={{ borderLeft: '4px solid #75479C' }}>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-semibold">Total Disclosures</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-5xl font-bold" style={{ color: '#75479C' }}>
+                {analytics?.total_disclosures || 0}
+              </div>
+              <div className="text-sm mt-2" style={{ color: '#666666' }}>
+                All time records
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-0 shadow-lg" style={{ borderLeft: '4px solid #0B74B0' }}>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base font-semibold">Total Directors Changed</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-5xl font-bold" style={{ color: '#0B74B0' }}>
+                0
+              </div>
+              <div className="text-sm mt-2" style={{ color: '#666666' }}>
+                Directors with changes
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );
