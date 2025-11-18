@@ -1271,6 +1271,142 @@ async def get_directors_for_minutes():
         logger.error(f"Error fetching directors for minutes: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Failed to fetch directors: {str(e)}")
 
+# Places Management - for Meeting Places
+class PlaceResponse(BaseModel):
+    id: int
+    name: str
+    address: str
+    is_default: bool
+    created_at: str
+
+class PlacesListResponse(BaseModel):
+    data: List[PlaceResponse]
+    count: int
+
+class PlaceCreateRequest(BaseModel):
+    name: str
+    address: str
+    is_default: bool = False
+
+def init_places_db():
+    """Initialize places database with default Adani Corporate House"""
+    db_path = os.path.join(os.path.dirname(__file__), "public", "places.db")
+    
+    # Create public directory if it doesn't exist
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
+    
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    
+    # Create places table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS places (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            address TEXT NOT NULL,
+            is_default BOOLEAN DEFAULT 0,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Check if default place exists
+    cursor.execute("SELECT COUNT(*) FROM places WHERE is_default = 1")
+    if cursor.fetchone()[0] == 0:
+        # Insert default Adani Corporate House
+        cursor.execute('''
+            INSERT INTO places (name, address, is_default)
+            VALUES (?, ?, ?)
+        ''', (
+            'Adani Corporate House',
+            'Adani Corporate House, Shantigram, Near Vaishno Devi Circle, S. G. Highway, Khodiyar, Ahmedabad - 382421, Gujarat, India',
+            1
+        ))
+    
+    conn.commit()
+    conn.close()
+
+# Initialize places database on startup
+init_places_db()
+
+@app.get("/places", response_model=PlacesListResponse)
+async def get_places():
+    """Get all places from database"""
+    try:
+        db_path = os.path.join(os.path.dirname(__file__), "public", "places.db")
+        
+        def fetch_places():
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            cursor.execute("SELECT id, name, address, is_default, created_at FROM places ORDER BY is_default DESC, name")
+            rows = cursor.fetchall()
+            conn.close()
+            
+            places = [
+                PlaceResponse(
+                    id=row[0],
+                    name=row[1],
+                    address=row[2],
+                    is_default=bool(row[3]),
+                    created_at=row[4]
+                )
+                for row in rows
+            ]
+            return places
+        
+        loop = asyncio.get_event_loop()
+        places = await loop.run_in_executor(thread_pool, fetch_places)
+        
+        return PlacesListResponse(
+            data=places,
+            count=len(places)
+        )
+    except Exception as e:
+        logger.error(f"Error fetching places: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch places: {str(e)}")
+
+@app.post("/places", response_model=PlaceResponse)
+async def create_place(request: PlaceCreateRequest):
+    """Create a new place"""
+    try:
+        db_path = os.path.join(os.path.dirname(__file__), "public", "places.db")
+        
+        def insert_place():
+            conn = sqlite3.connect(db_path)
+            cursor = conn.cursor()
+            
+            # If this is set as default, unset other defaults
+            if request.is_default:
+                cursor.execute("UPDATE places SET is_default = 0")
+            
+            cursor.execute('''
+                INSERT INTO places (name, address, is_default)
+                VALUES (?, ?, ?)
+            ''', (request.name, request.address, request.is_default))
+            
+            place_id = cursor.lastrowid
+            conn.commit()
+            
+            # Fetch the created place
+            cursor.execute("SELECT id, name, address, is_default, created_at FROM places WHERE id = ?", (place_id,))
+            row = cursor.fetchone()
+            conn.close()
+            
+            return PlaceResponse(
+                id=row[0],
+                name=row[1],
+                address=row[2],
+                is_default=bool(row[3]),
+                created_at=row[4]
+            )
+        
+        loop = asyncio.get_event_loop()
+        new_place = await loop.run_in_executor(thread_pool, insert_place)
+        
+        return new_place
+    except Exception as e:
+        logger.error(f"Error creating place: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to create place: {str(e)}")
+
 # Minutes Generation Endpoint
 class MinutesGenerationRequest(BaseModel):
     template: str

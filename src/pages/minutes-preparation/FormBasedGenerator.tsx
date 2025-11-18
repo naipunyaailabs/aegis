@@ -90,7 +90,7 @@ const FormBasedGenerator: React.FC = () => {
     meetingDay: '',
     timeCommenced: '',
     timeConcluded: '',
-    meetingPlace: '',
+    meetingPlace: 'Adani Corporate House, Shantigram, Near Vaishno Devi Circle, S. G. Highway, Khodiyar, Ahmedabad - 382421, Gujarat, India',
     presentDirectors: [],
     chairmanName: '',
     inAttendance: [],
@@ -118,15 +118,15 @@ const FormBasedGenerator: React.FC = () => {
     agmMonth: null,
     agmDay: null,
     agmTime: '',
-    registeredOfficeAddress: '',
+    registeredOfficeAddress: 'Adani Corporate House, Shantigram, Near Vaishno Devi Circle, S. G. Highway, Khodiyar, Ahmedabad - 382421, Gujarat, India',
     chairmanShortName: '',
     recordingDate: '',
     signingDate: '',
-    signingPlace: '',
+    signingPlace: 'Adani Corporate House, Shantigram, Near Vaishno Devi Circle, S. G. Highway, Khodiyar, Ahmedabad - 382421, Gujarat, India',
     signingChairmanName: '',
   });
 
-  const steps = [
+  const steps = formData.template === 'Q1' ? [
     { id: 'template', title: 'Template & Company' },
     { id: 'meeting', title: 'Meeting Details' },
     { id: 'attendance', title: 'Attendance' },
@@ -136,64 +136,72 @@ const FormBasedGenerator: React.FC = () => {
     { id: 'agm', title: 'AGM Details' },
     { id: 'signoff', title: 'Sign-off Details' },
     { id: 'review', title: 'Review & Generate' },
+  ] : [
+    { id: 'template', title: 'Template & Company' },
+    { id: 'meeting', title: 'Meeting Details' },
+    { id: 'attendance', title: 'Attendance' },
+    { id: 'signoff', title: 'Sign-off Details' },
+    { id: 'review', title: 'Review & Generate' },
   ];
 
   const isStepValid = () => {
-    switch (currentStep) {
-      case 0: // Template & Company
-        return formData.template && formData.companyName.trim() !== "";
-      case 1: // Meeting Details
-        return formData.meetingDate && formData.meetingPlace;
-      case 2: // Attendance
-        return formData.presentDirectors.length > 0;
-      case 3: // Disclosures
-        return true; // All fields are optional
-      case 4: // Auditor Payment
-        return formData.auditorPaymentNumber > 0 && formData.auditorPaymentWords.trim() !== "";
-      case 5: // Financial Statements
-        return formData.fsYear > 0 && 
-               formData.directorsReportYear > 0 && 
-               formData.rptFinYearRangeFrom > 0 && 
-               formData.rptFinYearRangeTo > 0 &&
-               formData.signatory1Name.trim() !== "" && 
-               formData.signatory1Role.trim() !== "" && 
-               formData.signatory1Din.trim() !== "" &&
-               formData.signatory2Name.trim() !== "" && 
-               formData.signatory2Role.trim() !== "" && 
-               formData.signatory2Din.trim() !== "";
-      case 6: // AGM Details
-        if (formData.template !== "Q1") return true;
-        // Check that all required AGM fields are filled
-        const isAgmNumberValid = formData.agmNumber && formData.agmNumber.trim() !== "";
-        const isAgmDateValid = Number.isFinite(formData.agmYear) && 
-                              Number.isFinite(formData.agmMonth) && 
-                              Number.isFinite(formData.agmDay) &&
-                              formData.agmYear! > 0 && 
-                              formData.agmMonth! >= 1 && formData.agmMonth! <= 12 && 
-                              formData.agmDay! >= 1 && formData.agmDay! <= 31;
-        const isAgmTimeValid = formData.agmTime && formData.agmTime.trim() !== "";
-        const isRegisteredOfficeValid = formData.registeredOfficeAddress && formData.registeredOfficeAddress.trim() !== "";
-        
-        // Debug logs
-        console.log('AGM Validation Debug:', {
-          agmNumber: formData.agmNumber,
-          agmYear: formData.agmYear,
-          agmMonth: formData.agmMonth,
-          agmDay: formData.agmDay,
-          agmTime: formData.agmTime,
-          registeredOfficeAddress: formData.registeredOfficeAddress,
-          isAgmNumberValid,
-          isAgmDateValid,
-          isAgmTimeValid,
-          isRegisteredOfficeValid,
-          result: isAgmNumberValid && isAgmDateValid && isAgmTimeValid && isRegisteredOfficeValid
-        });
-        
-        return isAgmNumberValid && isAgmDateValid && isAgmTimeValid && isRegisteredOfficeValid;
-      case 7: // Sign-off Details
-        return formData.recordingDate && formData.signingDate && formData.signingPlace;
-      default:
-        return true;
+    // For Q2/Q3/Q4, map step indices
+    const isQ1 = formData.template === 'Q1';
+    
+    if (isQ1) {
+      // Q1 has 9 steps (0-8)
+      switch (currentStep) {
+        case 0: // Template & Company
+          return formData.template && formData.companyName.trim() !== "";
+        case 1: // Meeting Details
+          return formData.meetingDate && formData.meetingPlace;
+        case 2: // Attendance
+          return formData.presentDirectors.length > 0;
+        case 3: // Disclosures
+          return true; // All fields are optional
+        case 4: // Auditor Payment
+          return formData.auditorPaymentNumber > 0 && formData.auditorPaymentWords.trim() !== "";
+        case 5: // Financial Statements
+          return formData.fsYear > 0 && 
+                 formData.directorsReportYear > 0 && 
+                 formData.rptFinYearRangeFrom > 0 && 
+                 formData.rptFinYearRangeTo > 0 &&
+                 formData.signatory1Name.trim() !== "" && 
+                 formData.signatory1Role.trim() !== "" && 
+                 formData.signatory1Din.trim() !== "" &&
+                 formData.signatory2Name.trim() !== "" && 
+                 formData.signatory2Role.trim() !== "" && 
+                 formData.signatory2Din.trim() !== "";
+        case 6: // AGM Details
+          const isAgmNumberValid = formData.agmNumber && formData.agmNumber.trim() !== "";
+          const isAgmDateValid = Number.isFinite(formData.agmYear) && 
+                                Number.isFinite(formData.agmMonth) && 
+                                Number.isFinite(formData.agmDay) &&
+                                formData.agmYear! > 0 && 
+                                formData.agmMonth! >= 1 && formData.agmMonth! <= 12 && 
+                                formData.agmDay! >= 1 && formData.agmDay! <= 31;
+          const isAgmTimeValid = formData.agmTime && formData.agmTime.trim() !== "";
+          const isRegisteredOfficeValid = formData.registeredOfficeAddress && formData.registeredOfficeAddress.trim() !== "";
+          return isAgmNumberValid && isAgmDateValid && isAgmTimeValid && isRegisteredOfficeValid;
+        case 7: // Sign-off Details
+          return formData.recordingDate && formData.signingDate && formData.signingPlace;
+        default:
+          return true;
+      }
+    } else {
+      // Q2/Q3/Q4 have 5 steps (0-4)
+      switch (currentStep) {
+        case 0: // Template & Company
+          return formData.template && formData.companyName.trim() !== "";
+        case 1: // Meeting Details
+          return formData.meetingDate && formData.meetingPlace;
+        case 2: // Attendance
+          return formData.presentDirectors.length > 0;
+        case 3: // Sign-off Details
+          return formData.recordingDate && formData.signingDate && formData.signingPlace;
+        default:
+          return true;
+      }
     }
   };
 
@@ -264,7 +272,7 @@ const FormBasedGenerator: React.FC = () => {
           let filename = `${formData.companyName}_${formData.template}_Minutes_${formData.meetingDate}.docx`;
           
           if (contentDisposition) {
-            const filenameMatch = contentDisposition.match(/filename="?(.+)"?/);
+            const filenameMatch = contentDisposition.match(/filename="?([^"]+)"?/);
             if (filenameMatch) {
               filename = filenameMatch[1];
             }
@@ -322,7 +330,7 @@ const FormBasedGenerator: React.FC = () => {
                     <SelectTrigger>
                       <SelectValue placeholder="Select a template" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                       <SelectItem value="Q1">Q1 Meeting Template</SelectItem>
                       <SelectItem value="Q2">Q2 Meeting Template</SelectItem>
                       <SelectItem value="Q3">Q3 Meeting Template</SelectItem>
@@ -374,7 +382,7 @@ const FormBasedGenerator: React.FC = () => {
                     <SelectTrigger>
                       <SelectValue placeholder="Select meeting type" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-white">
                       <SelectItem value="Board Meeting">Board Meeting</SelectItem>
                       <SelectItem value="Annual General Meeting">Annual General Meeting</SelectItem>
                       <SelectItem value="Extraordinary General Meeting">Extraordinary General Meeting</SelectItem>
@@ -441,8 +449,11 @@ const FormBasedGenerator: React.FC = () => {
                     label="Meeting Place"
                     value={formData.meetingPlace}
                     onChange={(value) => setFormData(prev => ({ ...prev, meetingPlace: value }))}
-                    placeholder="Select or add a meeting place"
+                    placeholder="Select Adani Corporate House or add custom place"
                   />
+                  <p className="text-sm text-muted-foreground">
+                    Default: Adani Corporate House, Shantigram, Near Vaishno Devi Circle, S. G. Highway, Khodiyar, Ahmedabad - 382421, Gujarat, India
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -550,8 +561,8 @@ const FormBasedGenerator: React.FC = () => {
             </Card>
           )}
 
-          {/* DISCLOSURES */}
-          {currentStep === 3 && (
+          {/* DISCLOSURES - Q1 ONLY */}
+          {formData.template === 'Q1' && currentStep === 3 && (
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle>Disclosures</CardTitle>
@@ -593,8 +604,8 @@ const FormBasedGenerator: React.FC = () => {
             </Card>
           )}
 
-          {/* AUDITOR PAYMENT */}
-          {currentStep === 4 && (
+          {/* AUDITOR PAYMENT - Q1 ONLY */}
+          {formData.template === 'Q1' && currentStep === 4 && (
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle>Auditor Payment</CardTitle>
@@ -639,8 +650,8 @@ const FormBasedGenerator: React.FC = () => {
             </Card>
           )}
 
-          {/* FINANCIAL STATEMENTS */}
-          {currentStep === 5 && (
+          {/* FINANCIAL STATEMENTS - Q1 ONLY */}
+          {formData.template === 'Q1' && currentStep === 5 && (
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle>Financial Statements</CardTitle>
@@ -699,75 +710,79 @@ const FormBasedGenerator: React.FC = () => {
 
                 <div className="space-y-4">
                   <h3 className="text-lg font-medium">Signatory 1</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signatory1Name">Name *</Label>
-                      <Input
-                        id="signatory1Name"
-                        value={formData.signatory1Name}
-                        onChange={(e) => setFormData(prev => ({ ...prev, signatory1Name: e.target.value }))}
-                        placeholder="e.g., John Doe"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signatory1Role">Role *</Label>
-                      <Input
-                        id="signatory1Role"
-                        value={formData.signatory1Role}
-                        onChange={(e) => setFormData(prev => ({ ...prev, signatory1Role: e.target.value }))}
-                        placeholder="e.g., Director"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signatory1Din">DIN *</Label>
-                      <Input
-                        id="signatory1Din"
-                        value={formData.signatory1Din}
-                        onChange={(e) => setFormData(prev => ({ ...prev, signatory1Din: e.target.value }))}
-                        placeholder="e.g., 12345678"
-                      />
-                    </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="signatory1">Select Director *</Label>
+                    <select
+                      id="signatory1"
+                      value={formData.signatory1Name}
+                      onChange={(e) => {
+                        const selectedDirector = formData.presentDirectors.find(d => d.name === e.target.value);
+                        if (selectedDirector) {
+                          setFormData(prev => ({
+                            ...prev,
+                            signatory1Name: selectedDirector.name,
+                            signatory1Din: selectedDirector.din,
+                            signatory1Role: 'Director'
+                          }));
+                        }
+                      }}
+                      className="w-full p-2 border border-gray-300 rounded-md"
+                    >
+                      <option value="">Select a director</option>
+                      {formData.presentDirectors.map((director, index) => (
+                        <option key={index} value={director.name}>
+                          {director.name} (DIN: {director.din})
+                        </option>
+                      ))}
+                    </select>
+                    {formData.signatory1Name && (
+                      <p className="text-sm text-muted-foreground">
+                        Selected: {formData.signatory1Name} - DIN: {formData.signatory1Din}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <h3 className="text-lg font-medium">Signatory 2</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="signatory2Name">Name *</Label>
-                      <Input
-                        id="signatory2Name"
-                        value={formData.signatory2Name}
-                        onChange={(e) => setFormData(prev => ({ ...prev, signatory2Name: e.target.value }))}
-                        placeholder="e.g., Jane Smith"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signatory2Role">Role *</Label>
-                      <Input
-                        id="signatory2Role"
-                        value={formData.signatory2Role}
-                        onChange={(e) => setFormData(prev => ({ ...prev, signatory2Role: e.target.value }))}
-                        placeholder="e.g., Director"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="signatory2Din">DIN *</Label>
-                      <Input
-                        id="signatory2Din"
-                        value={formData.signatory2Din}
-                        onChange={(e) => setFormData(prev => ({ ...prev, signatory2Din: e.target.value }))}
-                        placeholder="e.g., 87654321"
-                      />
-                    </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="signatory2">Select Director *</Label>
+                    <select
+                      id="signatory2"
+                      value={formData.signatory2Name}
+                      onChange={(e) => {
+                        const selectedDirector = formData.presentDirectors.find(d => d.name === e.target.value);
+                        if (selectedDirector) {
+                          setFormData(prev => ({
+                            ...prev,
+                            signatory2Name: selectedDirector.name,
+                            signatory2Din: selectedDirector.din,
+                            signatory2Role: 'Director'
+                          }));
+                        }
+                      }}
+                      className="w-full p-2 border border-gray-300 rounded-md"
+                    >
+                      <option value="">Select a director</option>
+                      {formData.presentDirectors.map((director, index) => (
+                        <option key={index} value={director.name}>
+                          {director.name} (DIN: {director.din})
+                        </option>
+                      ))}
+                    </select>
+                    {formData.signatory2Name && (
+                      <p className="text-sm text-muted-foreground">
+                        Selected: {formData.signatory2Name} - DIN: {formData.signatory2Din}
+                      </p>
+                    )}
                   </div>
                 </div>
               </CardContent>
             </Card>
           )}
 
-          {/* AGM DETAILS */}
-          {currentStep === 6 && (
+          {/* AGM DETAILS - Q1 ONLY */}
+          {formData.template === 'Q1' && currentStep === 6 && (
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle>AGM Details</CardTitle>
@@ -853,17 +868,19 @@ const FormBasedGenerator: React.FC = () => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="agmTime">AGM Time *</Label>
+                  <Label htmlFor="agmTime">AGM Time (9 AM - 6 PM) *</Label>
                   <Input
                     id="agmTime"
                     name="agmTime"
                     type="time"
+                    min="09:00"
+                    max="18:00"
                     value={formData.agmTime}
                     onChange={(e) => setFormData(prev => ({ ...prev, agmTime: e.target.value }))}
                     className={!formData.agmTime || formData.agmTime.trim() === '' ? 'border-red-500' : ''}
                   />
                   <p className="text-sm text-muted-foreground">
-                    Select the time of the AGM
+                    Select the time of the AGM (9:00 AM to 6:00 PM only)
                   </p>
                 </div>
 
@@ -889,15 +906,18 @@ const FormBasedGenerator: React.FC = () => {
                     label="Registered Office Address"
                     value={formData.registeredOfficeAddress}
                     onChange={(value) => setFormData(prev => ({ ...prev, registeredOfficeAddress: value }))}
-                    placeholder="Select or add a registered office address"
+                    placeholder="Select Adani Corporate House or add custom address"
                   />
+                  <p className="text-sm text-muted-foreground">
+                    Default: Adani Corporate House, Shantigram, Near Vaishno Devi Circle, S. G. Highway, Khodiyar, Ahmedabad - 382421, Gujarat, India
+                  </p>
                 </div>
               </CardContent>
             </Card>
           )}
 
           {/* SIGN-OFF DETAILS */}
-          {currentStep === 7 && (
+          {((formData.template === 'Q1' && currentStep === 7) || (formData.template !== 'Q1' && currentStep === 3)) && (
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle>Sign-off Details</CardTitle>
@@ -933,15 +953,18 @@ const FormBasedGenerator: React.FC = () => {
                     label="Signing Place"
                     value={formData.signingPlace}
                     onChange={(value) => setFormData(prev => ({ ...prev, signingPlace: value }))}
-                    placeholder="Select or add a signing place"
+                    placeholder="Select Adani Corporate House or add custom place"
                   />
+                  <p className="text-sm text-muted-foreground">
+                    Default: Adani Corporate House, Shantigram, Near Vaishno Devi Circle, S. G. Highway, Khodiyar, Ahmedabad - 382421, Gujarat, India
+                  </p>
                 </div>
               </CardContent>
             </Card>
           )}
 
           {/* REVIEW & GENERATE */}
-          {currentStep === 8 && (
+          {((formData.template === 'Q1' && currentStep === 8) || (formData.template !== 'Q1' && currentStep === 4)) && (
             <Card className="mb-6">
               <CardHeader>
                 <CardTitle>Review Your Information</CardTitle>
