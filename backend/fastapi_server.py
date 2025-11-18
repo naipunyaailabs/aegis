@@ -1456,7 +1456,11 @@ async def generate_minutes(request: MinutesGenerationRequest):
             # Load the template
             doc = DocxDocument(template_path)
             
-            # Create placeholder mapping
+            # Get non-chairman directors for signature tables
+            non_chairman_directors = [d for d in request.presentDirectors if d.get('name') != request.chairmanName]
+            director_for_signature = non_chairman_directors[0] if non_chairman_directors else (request.presentDirectors[0] if request.presentDirectors else {'name': '', 'din': ''})
+            
+            # Create basic placeholder mapping
             placeholders = {
                 '[No. of Meeting]': request.meetingNumber,
                 '[Type of Meeting]': request.meetingType,
@@ -1467,7 +1471,7 @@ async def generate_minutes(request: MinutesGenerationRequest):
                 '[Time: CONCLUDED AT]': request.meetingEndTime,
                 '[Place of Meeting]': request.meetingPlace,
                 '[Chairman]': request.chairmanName,
-                '[Director]': request.chairmanName,  # Same as chairman for now
+                '[Director]': director_for_signature.get('name', ''),  # Different from chairman
                 '[Date-previous-meeting]': request.previousMeetingDate,
                 '[amount]': request.auditorPaymentAmount,
                 '[Amount-in-words]': request.auditorPaymentWords,
@@ -1487,25 +1491,42 @@ async def generate_minutes(request: MinutesGenerationRequest):
                 '[Officer]': request.companySecretary or request.authorisedOfficer,
             }
             
-            # Add directors (multiple instances)
-            if request.presentDirectors and len(request.presentDirectors) > 0:
-                for i, director in enumerate(request.presentDirectors[:4]):  # Up to 4 directors
-                    placeholders[f'[Dir-name]'] = director.get('name', '')
-                    placeholders[f'[Din-num]'] = director.get('din', '')
-            
-            # Replace placeholders in paragraphs
+            # Replace basic placeholders in paragraphs first
             for para in doc.paragraphs:
                 for placeholder, value in placeholders.items():
                     if placeholder in para.text:
                         para.text = para.text.replace(placeholder, str(value))
             
-            # Replace placeholders in tables
+            # Replace basic placeholders in tables
             for table in doc.tables:
                 for row in table.rows:
                     for cell in row.cells:
                         for placeholder, value in placeholders.items():
                             if placeholder in cell.text:
                                 cell.text = cell.text.replace(placeholder, str(value))
+            
+            # Smart replacement for [Dir-name] and [Din-num] - replace each occurrence with different directors
+            if request.presentDirectors and len(request.presentDirectors) > 0:
+                director_index = 0
+                total_directors = len(request.presentDirectors)
+                
+                # Replace in paragraphs - each occurrence gets a different director
+                for para in doc.paragraphs:
+                    while '[Dir-name]' in para.text or '[Din-num]' in para.text:
+                        if director_index < total_directors:
+                            current_director = request.presentDirectors[director_index]
+                            # Replace only the first occurrence in this paragraph
+                            if '[Dir-name]' in para.text:
+                                para.text = para.text.replace('[Dir-name]', current_director.get('name', ''), 1)
+                            if '[Din-num]' in para.text:
+                                para.text = para.text.replace('[Din-num]', current_director.get('din', ''), 1)
+                            director_index += 1
+                        else:
+                            # No more directors, use empty or repeat
+                            para.text = para.text.replace('[Dir-name]', '')
+                            para.text = para.text.replace('[Din-num]', '')
+                            break
+
             
             # Generate filename
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
