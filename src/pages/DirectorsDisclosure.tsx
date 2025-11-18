@@ -77,7 +77,7 @@ const DirectorsDisclosure = () => {
               >
                 {sidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </Button>
-              <FileText className="h-8 w-8" style={{ color: "#75479C" }} />
+              <img src="/adani.svg" alt="Adani Logo" className="h-10 w-auto" />
               <div>
                 <h1 className="text-2xl font-bold" style={{ color: "#000000" }}>
                   Directors' Disclosure
