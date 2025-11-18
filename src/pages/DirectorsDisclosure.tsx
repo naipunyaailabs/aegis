@@ -19,16 +19,16 @@ interface SidebarItem {
 
 const sidebarItems: SidebarItem[] = [
   {
-    id: 'datasource',
-    label: 'Data Source',
-    icon: <FileText className="h-5 w-5" />,
-    color: '#0B74B0'
-  },
-  {
     id: 'analytics',
     label: 'Analytics',
     icon: <BarChart3 className="h-5 w-5" />,
     color: '#75479C'
+  },
+  {
+    id: 'datasource',
+    label: 'Data Source',
+    icon: <FileText className="h-5 w-5" />,
+    color: '#0B74B0'
   },
   {
     id: 'masterdata',
@@ -39,7 +39,7 @@ const sidebarItems: SidebarItem[] = [
 ];
 
 const DirectorsDisclosure = () => {
-  const [activeTab, setActiveTab] = useState<TabType>('datasource');
+  const [activeTab, setActiveTab] = useState<TabType>('analytics');
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const navigate = useNavigate();
 

@@ -1505,6 +1505,36 @@ async def generate_minutes(request: MinutesGenerationRequest):
                             if placeholder in cell.text:
                                 cell.text = cell.text.replace(placeholder, str(value))
             
+            # Replace placeholders in headers and footers
+            for section in doc.sections:
+                # Replace in header
+                for para in section.header.paragraphs:
+                    for placeholder, value in placeholders.items():
+                        if placeholder in para.text:
+                            para.text = para.text.replace(placeholder, str(value))
+                
+                # Replace in header tables
+                for table in section.header.tables:
+                    for row in table.rows:
+                        for cell in row.cells:
+                            for placeholder, value in placeholders.items():
+                                if placeholder in cell.text:
+                                    cell.text = cell.text.replace(placeholder, str(value))
+                
+                # Replace in footer
+                for para in section.footer.paragraphs:
+                    for placeholder, value in placeholders.items():
+                        if placeholder in para.text:
+                            para.text = para.text.replace(placeholder, str(value))
+                
+                # Replace in footer tables
+                for table in section.footer.tables:
+                    for row in table.rows:
+                        for cell in row.cells:
+                            for placeholder, value in placeholders.items():
+                                if placeholder in cell.text:
+                                    cell.text = cell.text.replace(placeholder, str(value))
+            
             # Smart replacement for [Dir-name] and [Din-num] - replace each occurrence with different directors
             if request.presentDirectors and len(request.presentDirectors) > 0:
                 director_index = 0
