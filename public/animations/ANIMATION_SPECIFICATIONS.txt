@@ -1,0 +1,21 @@
+Animation Specifications for Landing Page
+
+Dimensions:
+- Recommended size: 300x300 pixels
+- Aspect ratio: 1:1 (square)
+- Format: WebM (VP9 codec recommended)
+
+Placement:
+- left-animation.webm: Appears on the left side of the central orb
+- right-animation.webm: Appears on the right side of the central orb
+
+Behavior:
+- Autoplay: Yes
+- Loop: Yes
+- Muted: Yes (required for autoplay in most browsers)
+- Controls: No
+
+Styling:
+- Should complement the purple/blue color scheme of the orb
+- Should not overpower the central logo
+- Should have transparent background where possible

@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+# office365-rest-python
+Office365-REST-Python-Client
+python-dotenv
+pandas
+openpyxl
+python-docx

@@ -1,0 +1,1401 @@
+{
+  "Q1": [
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "MINUTES OF THE ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[No. of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Type of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " BOARD OF DIRECTORS MEETING OF ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Name of Company]",
+          "is_placeholder": true
+        },
+        {
+          "text": " HELD ON ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Day of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": ", THE ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Date of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " COMMENCED AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Time: COMMENCED AT]",
+          "is_placeholder": true
+        },
+        {
+          "text": " AND CONCLUDED AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Time: CONCLUDED AT]",
+          "is_placeholder": true
+        },
+        {
+          "text": ", AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Place of Meeting]",
+          "is_placeholder": true
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The following Directors were present:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "In ATTENDANCE: \u2013 ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Chairman ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Mr. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Manual]",
+          "is_placeholder": true
+        },
+        {
+          "text": " occupied the Chair and the meeting commenced its business.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "LEAVE OF ABSENCE: ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "All directors being present, there is no requirement to grant leave of absence.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "QUORUM:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman assessed the quorum for commencement of the proceeding of the board Meeting of the Company. For this the attendance register was circulated among the members of the board for their signature in token of their presence. After that the Chairman declared that a valid quorum is present in the meeting and commenced the proceedings.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO CONFIRM THE MINUTES OF THE PREVIOUS BOARD MEETING.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman placed on table the minutes of the previous meeting of Board of Directors dated ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Auto]",
+          "is_placeholder": true
+        },
+        {
+          "text": " which were prepared within the stipulated time period. The same were read, confirmed and approved by the Board and signed by the Chairman of the meeting.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO TAKE note of General Notice of CONCERN/Interest under section 184 of the Companies Act, 2013.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The General notice of Concern/Interest pursuant to section 184 of the Companies Act, 2013 were received and were placed before Board. ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Mr. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[from MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": "[from MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": " (DIN: [from MCA]) and",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Mr. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[from MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": "[from MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": " (DIN: [from MCA])",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": " The Board took note of the same. ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO TAKE note of DECLARATION UNDER section 164 (2) of the Companies Act, 2013.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Declarations pursuant to section 164 (2) of the Companies, Act, 2013, were received and were placed before Board. ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Mr. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[from MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": "[from MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": " (DIN: [from MCA]) and",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Mr. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[from MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": "[from MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": " (DIN: [from MCA])",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": " The Board took note of the same. ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO APPROVE AUDITORS payment FOR THE financial YEAR ENDED ON 31ST MARCH, ",
+          "is_placeholder": false
+        },
+        {
+          "text": "20____",
+          "is_placeholder": true
+        },
+        {
+          "text": ".",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman informed the Board that the Board needs to approve the total payment of Rs. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Manual]",
+          "is_placeholder": true
+        },
+        {
+          "text": "[Manual]",
+          "is_placeholder": true
+        },
+        {
+          "text": "/- (Rupees [Manual] Only) to the statutory auditors of the Company for the financial year ended on 31st March, 20___. The Board discussed the same and passed the following resolution:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "\u201cRESOLVED THAT the total payment of Rs. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Manual]",
+          "is_placeholder": true
+        },
+        {
+          "text": "[Manual]",
+          "is_placeholder": true
+        },
+        {
+          "text": "/- (Rupees [Manual] Only) to the statutory auditors of the Company for the financial year ended on 31st March, ",
+          "is_placeholder": false
+        },
+        {
+          "text": "20____",
+          "is_placeholder": true
+        },
+        {
+          "text": " be and is hereby approved.\u201d",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO approve balance sheet, profit & loss and cash flow statement for the year ended 31st march, ",
+          "is_placeholder": false
+        },
+        {
+          "text": "20____",
+          "is_placeholder": true
+        },
+        {
+          "text": ".",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman placed before the Board, Balance Sheet as at 31st March ",
+          "is_placeholder": false
+        },
+        {
+          "text": "20____",
+          "is_placeholder": true
+        },
+        {
+          "text": "20____",
+          "is_placeholder": true
+        },
+        {
+          "text": ", Statement of Profit and Loss for the year ended on 31st March 20____ and Cash Flow Statement along with Schedules and Notes forming part thereof. The Board discussed the same and passed the following Resolution:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "\u201cRESOLVED THAT the Balance Sheet as at 31st March, <year>___ Statement of Profit and Loss for the Year ended 31st March, <year> and the Cash Flow Statement as placed before the meeting be and are hereby approved and the same along with the Auditors' Report thereon be placed before the ensuing Annual General Meeting of the Members of the Company for adoption. ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "RESOVED FURTHER THAT the related party transactions entered into by the Company during the Financial Year <2025 to  2026>__ as per the statement placed before the meeting, duly initialed by the Chairman for the purpose of identification, be and are hereby approved and ratified.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "RESOLVED FURTHER THAT the above Balance Sheet, Statement of Profit and Loss and the Cash Flow Statement be signed by Mr. <Director Name>, __, Director (DIN: _<DIN Number>___) and Mr. __<Director Name>__, Director (DIN: __<DIN>__) of the Company for and on behalf of the Board of Directors of the Company and the same be given to the Auditors of the Company for their Report thereon.\u201d",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO approve DIRECTORS rEPORT FOR THE FINANCIAL YEAR ENDED ON 31ST MARCH, 20<year> _.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman placed before the Board the Directors\u2019 Report for the financial year ended on 31st March, 20<year>  and passed the following resolution: ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "\u201cRESOLVED THAT the Directors\u2019 Report for the year ended 31st March, 20<year>, as placed before the meeting and initialed by the Chairman for the purpose of identification, be and is hereby approved and the Chairman be and is hereby authorized to sign the same on behalf of the Board of Directors of the Company.\"",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO FIX DAY, TIME AND PLACE FOR AND APPROVAL OF NOTICE CONVENING THE <no of meeting> ANNUAL GENERAL MEETING.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The draft Notice convening the <no of meeting> Annual General Meeting containing requirement of all such approvals by way of ordinary/ special resolutions from the members was placed before the Board. ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "\"RESOLVED THAT Draft Notice convening the <no of meeting>  Annual General Meeting, initialed by the Chairman for the purpose of identification, be and is hereby approved.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "RESOLVED FURTHER THAT <no of meeting> Annual General Meeting of the Members be convened and held on <day>, the ____ Day of ____, ",
+          "is_placeholder": false
+        },
+        {
+          "text": "20____",
+          "is_placeholder": true
+        },
+        {
+          "text": " at ____ p.m. at Registered Office of the Company Situated at ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[From website: MCA]",
+          "is_placeholder": true
+        },
+        {
+          "text": ".",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "RESOLVED FURTHER THAT Mr. <Chairman>, Chairman of the Company be and is hereby advised to do necessary formalities for sending Annual Report to members and for holding Annual General Meeting within time limit and do necessary formalities in connection therewith.\"",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "VOTE OF THANKS:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Thereafter there being no other business the meeting terminated with a vote of thanks to the chair.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Date of Recording    :\t",
+          "is_placeholder": false
+        },
+        {
+          "text": "____",
+          "is_placeholder": true
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Date of Signing\t:\t",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Place\t\t\t: \t",
+          "is_placeholder": false
+        },
+        {
+          "text": "____",
+          "is_placeholder": true
+        },
+        {
+          "text": "\t\t\t\tChairman",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "table"
+    },
+    {
+      "type": "table"
+    }
+  ],
+  "Q2": [
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "MINUTES OF THE ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[No. of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Type of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " BOARD OF DIRECTORS MEETING OF ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Name of Company]",
+          "is_placeholder": true
+        },
+        {
+          "text": " HELD ON ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Day of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": ", THE ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Date of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " COMMENCED AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Time: COMMENCED AT]",
+          "is_placeholder": true
+        },
+        {
+          "text": " AND CONCLUDED AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Time: CONCLUDED AT]",
+          "is_placeholder": true
+        },
+        {
+          "text": ", AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Place of Meeting]",
+          "is_placeholder": true
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The following Directors were present:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "In ATTENDANCE: \u2013 ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Chairman ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Mr. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Manual]",
+          "is_placeholder": true
+        },
+        {
+          "text": " occupied the Chair and the meeting commenced its business.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "LEAVE OF ABSENCE: ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "All directors being present, there is no requirement to grant leave of absence.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "QUORUM:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman assessed the quorum for commencement of the proceeding of the board Meeting of the Company. For this the attendance register was circulated among the members of the board for their signature in token of their presence. After that the Chairman declared that a valid quorum is present in the meeting and commenced the proceedings.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO CONFIRM THE MINUTES OF THE PREVIOUS BOARD MEETING.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman placed on table the minutes of the previous meeting of Board of Directors dated ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Auto]",
+          "is_placeholder": true
+        },
+        {
+          "text": " which were prepared within the stipulated time period. The same were read, confirmed and approved by the Board and signed by the Chairman of the meeting.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO REVIEW BUSINESS OPERATIONS OF THE COMPANY.\u00a0",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Board was informed about the status of business activities of the Company.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Board discussed the same and took note of it.\u00a0",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "VOTE OF THANKS:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Thereafter there being no other business the meeting terminated with a vote of thanks to the chair.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Date of Recording    :\t",
+          "is_placeholder": false
+        },
+        {
+          "text": "____",
+          "is_placeholder": true
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Date of Signing\t:\t",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Place\t\t\t: \t",
+          "is_placeholder": false
+        },
+        {
+          "text": "____",
+          "is_placeholder": true
+        },
+        {
+          "text": "\t\t\t\tChairman",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "table"
+    },
+    {
+      "type": "table"
+    }
+  ],
+  "Q3": [
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "MINUTES OF THE ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[No. of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Type of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " BOARD OF DIRECTORS MEETING OF ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Name of Company]",
+          "is_placeholder": true
+        },
+        {
+          "text": " HELD ON ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Day of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": ", THE ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Date of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " COMMENCED AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Time: COMMENCED AT]",
+          "is_placeholder": true
+        },
+        {
+          "text": " AND CONCLUDED AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Time: CONCLUDED AT]",
+          "is_placeholder": true
+        },
+        {
+          "text": ", AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Place of Meeting]",
+          "is_placeholder": true
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The following Directors were present:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "In ATTENDANCE: \u2013 ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Chairman ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Mr. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Manual]",
+          "is_placeholder": true
+        },
+        {
+          "text": " occupied the Chair and the meeting commenced its business.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "LEAVE OF ABSENCE: ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "All directors being present, there is no requirement to grant leave of absence.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "QUORUM:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman assessed the quorum for commencement of the proceeding of the board Meeting of the Company. For this the attendance register was circulated among the members of the board for their signature in token of their presence. After that the Chairman declared that a valid quorum is present in the meeting and commenced the proceedings.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO CONFIRM THE MINUTES OF THE PREVIOUS BOARD MEETING.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman placed on table the minutes of the previous meeting of Board of Directors dated ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Auto]",
+          "is_placeholder": true
+        },
+        {
+          "text": " which were prepared within the stipulated time period. The same were read, confirmed and approved by the Board and signed by the Chairman of the meeting.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO REVIEW BUSINESS OPERATIONS OF THE COMPANY.\u00a0",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Board was informed about the status of business activities of the Company.\u00a0\u00a0",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Board discussed the same and took note of it.\u00a0",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "VOTE OF THANKS:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Thereafter there being no other business the meeting terminated with a vote of thanks to the chair.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Date of Recording    :\t",
+          "is_placeholder": false
+        },
+        {
+          "text": "____",
+          "is_placeholder": true
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Date of Signing\t:\t",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Place\t\t\t: \t",
+          "is_placeholder": false
+        },
+        {
+          "text": "____",
+          "is_placeholder": true
+        },
+        {
+          "text": "\t\t\t\tChairman",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "table"
+    },
+    {
+      "type": "table"
+    }
+  ],
+  "Q4": [
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "MINUTES OF THE ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[No. of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Type of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " BOARD OF DIRECTORS MEETING OF ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Name of Company]",
+          "is_placeholder": true
+        },
+        {
+          "text": " HELD ON ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Day of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": ", THE ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Date of Meeting]",
+          "is_placeholder": true
+        },
+        {
+          "text": " COMMENCED AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Time: COMMENCED AT]",
+          "is_placeholder": true
+        },
+        {
+          "text": " AND CONCLUDED AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Time: CONCLUDED AT]",
+          "is_placeholder": true
+        },
+        {
+          "text": ", AT ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Place of Meeting]",
+          "is_placeholder": true
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The following Directors were present:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "In ATTENDANCE: \u2013 ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Chairman ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Mr. ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Manual]",
+          "is_placeholder": true
+        },
+        {
+          "text": " occupied the Chair and the meeting commenced its business.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "LEAVE OF ABSENCE: ",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "All directors being present, there is no requirement to grant leave of absence.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "QUORUM:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman assessed the quorum for commencement of the proceeding of the board Meeting of the Company. For this the attendance register was circulated among the members of the board for their signature in token of their presence. After that the Chairman declared that a valid quorum is present in the meeting and commenced the proceedings.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO CONFIRM THE MINUTES OF THE PREVIOUS BOARD MEETING.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Chairman placed on table the minutes of the previous meeting of Board of Directors dated ",
+          "is_placeholder": false
+        },
+        {
+          "text": "[Auto]",
+          "is_placeholder": true
+        },
+        {
+          "text": " which were prepared within the stipulated time period. The same were read, confirmed and approved by the Board and signed by the Chairman of the meeting.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "TO REVIEW BUSINESS OPERATIONS OF THE COMPANY.\u00a0",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Board was informed about the status of business activities of the Company.\u00a0\u00a0",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "The Board discussed the same and took note of it.\u00a0",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "VOTE OF THANKS:",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Thereafter there being no other business the meeting terminated with a vote of thanks to the chair.",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Date of Recording    :\t",
+          "is_placeholder": false
+        },
+        {
+          "text": "____",
+          "is_placeholder": true
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Date of Signing\t:\t",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "segments": [
+        {
+          "text": "Place\t\t\t: \t",
+          "is_placeholder": false
+        },
+        {
+          "text": "____",
+          "is_placeholder": true
+        },
+        {
+          "text": "\t\t\t\tChairman",
+          "is_placeholder": false
+        }
+      ]
+    },
+    {
+      "type": "table"
+    },
+    {
+      "type": "table"
+    }
+  ]
+}
